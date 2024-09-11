@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="profile-container">
+    {% if user.is_authenticated %}
+    <h2>Welcome {{ user.username }} this your Profile</h2>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>First Name:</strong> {{ user.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+    {% else %}
+    <p>User is not logged in</p>
+    {% endif %}
+    <a href="{% url 'moviesapp:edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+    <a href="{% url 'moviesapp:add_movie' %}" class="btn btn-success">Add New Movie</a>
+    <h3>Your Movies</h3>
+    <ul>
+        {% for movie in user.movie_set.all %}
+        <li>
+            <h4>{{ movie.title }}</h4>
+            <a href="{% url 'moviesapp:view_movie' movie.id %}"class="btn btn-success">View</a> |
+            <a href="{% url 'moviesapp:edit_movie' movie.id %}"class="btn btn-success">Edit</a> |
+            <a href="{% url 'moviesapp:delete_movie' movie.id %}"class="btn btn-danger">Delete</a>
+        </li>
+        {% empty %}
+        <p>No movies added yet.</p>
+        {% endfor %}
+    </ul>
+
+    <h3>Logout</h3>
+    <a href="{% url 'moviesapp:logout' %}" class="btn btn-danger">Logout</a>
+</div>
+{% endblock %}

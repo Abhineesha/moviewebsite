@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+     {% if user.is_authenticated %}
+    <li> Hello {{user.username}} </li>
+    <div class="container">
+        <li><a href="profile">Your Profile Details</a></li>
+        <li><a href="{% url 'moviesapp:add_movie' %}">Add movies</a></li>
+        <li><a href="logout">Logout</a></li>
+    </div>
+    {% else %}
+    <li><a href="register">Register</a></li>
+    <li><a href="login">login</a></li>
+    {% endif %}
+</div>
+
+<div class="container">
+    <div class="container">
+    <div class="row">
+        {% for i in movie_list %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{i.poster.url}}" class="card-img-top" alt="..." height="300">
+                <div class="card-body">
+                <h5 class="card-title">{{i.title}}</h5>
+                <p class="card-text">{{i.description}}</p>
+                <p class="card-text">{{i.release_date}}</p>
+                <p class="card-text">{{i.actors}}</p>
+                <p class="card-text">{{i.category}}</p>
+                <a href="trailer_link"> youtube link</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}

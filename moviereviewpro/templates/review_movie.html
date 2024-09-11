@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<form method="POST">
+    {% csrf_token %}
+    <h3>Rating</h3>
+    {{ rating_form.as_p }}
+
+    <h3>Review</h3>
+    {{ review_form.as_p }}
+
+    <button type="submit">Submit</button>
+</form>
+
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        <div class="form-group">-->
+<!--            <input type="text" name="rating" placeholder="comment">-->
+<!--            {{ form.rating }}-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <input type="text" name="comment" placeholder="comment">-->
+<!--            {{ form.comment }}-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-primary">Submit Review</button>-->
+<!--    </form>-->
+
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<dvi class="card" style="background-color: ">
+    <h3 class="text-center">Add Review</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}<!-- This renders the form with proper fields -->
+        <center>
+            <input type="submit" class="btn btn-success" value="Add Review">
+        </center>
+    </form>
+</dvi>
+<div class="card">
+    <div class="card-body" style="background-color: ">
+        <h3 class="text-center" style = "font-family:courier new, courier, Times New Roman; font-weight: bold;">Reviews</h3>
+        <br>
+        {% for review in reviews %}
+        <div class="card" style="background-color:">
+            <div class="card-body" style="background-color: ; border-radius: 8px;">
+                <div class="row" style="">
+                    <div class="col-md-3">
+                        <br>
+                        <h5 class="text-left" style = "font-family:courier new, courier, Times New Roman; font-weight: bold;">{{ review.user.username }}</h5>
+                        <h5 class="font-family:courier, courier, Times New Roman; font-weight: bold;"> {{ review.comment }}</h5>
+                        <h5 style = "font-family:courier, courier, Times New Roman; font-weight: bold;">{{ review.rating }}</h5>
+                    </div>
+                    <div class="col-md-9">
+                        <br>
+                        <p style = "font-family:courier, courier, Times New Roman; font-weight: bold; ">{{ review.comment }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+<!--<div class="card" style="background-color: ">-->
+<!--    <div class="card-body" style="color: ; background-color: ">-->
+<!--        <h3 class="text-center">Add Review</h3>-->
+<!--        {% csrf_token %}-->
+<!--        <label for="comment">Review:</label>-->
+<!--        <textarea placeholder="Review" name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>-->
+<!--        <br>-->
+<!--        <label for="rating">Rating:</label>-->
+<!--        <input type="text" name="rating" class="form-control">-->
+<!--        <output name="amount" id="amount" for="rangeInput"></output>-->
+<!--        <br>-->
+<!--        <center>-->
+<!--            <input type="submit" class="btn btn-success" value="Add Review">-->
+<!--        </center>-->
+<!--    </div>-->
+<!--</div>-->
+
